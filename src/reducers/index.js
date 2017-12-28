@@ -1,22 +1,8 @@
-const initialState = {
-  products:[
-    {
-      id:1,
-      name:'iPhone x'
-    },
-    {
-      id:2,
-      name:'iPhone xx'
-    },
-    {
-      id:3,
-      name:'iPhone xxx'
-    }
-  ]
-}
-
-const rootReducer = (state = initialState, action) => {
- return state
-}
-
+import { combineReducers } from 'redux'
+import products from './products'
+import cart from './cart'
+const rootReducer = combineReducers({
+  products,
+  cart
+})
 export default rootReducer

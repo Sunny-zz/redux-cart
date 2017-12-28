@@ -1,9 +1,14 @@
 import React, { Component } from 'react'
 import ProductsContainer from '../containers/ProductsContainer'
+import Cartcontainer from '../containers/CartContainer'
 class Main extends Component {
   render () {
     return (
-      <ProductsContainer />
+      <div>
+        <ProductsContainer />
+        <hr />
+        <Cartcontainer />
+      </div>
     )
   }
 }
