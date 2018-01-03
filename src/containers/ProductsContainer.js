@@ -1,3 +1,5 @@
 import React from 'react'
 import Products from '../components/Products'
-export default () => <Products />
+import { connect } from 'react-redux'
+const mapStateToProps = state => ({ products:state.products })
+export default connect(mapStateToProps)(props => <Products {...props}/>)

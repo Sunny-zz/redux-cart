@@ -4,32 +4,29 @@ class Cart extends React.Component {
   handleAdd = (id) => {
     store.dispatch({
       type:'ADD_NUM',
-      text:id
+      productId:id
     })
   }
-  handleSub = (t) => {
-    if(t.num>1){
+  handleSub = (id) => {
+    if(this.props.products.find(t=>t.id===id).quntity>1){
       store.dispatch({
         type:'SUB_NUM',
-        text:t.id
+        productId:id
       })
     }
   }
   render () {
-    const { cart } = store.getState()
-    const total = cart.reduce((sum, t) => {
-      return sum + t.num*t.price
-    }, 0)
-    const productList = cart.length > 0 ? cart.map(t => (
+    const { products, total } = this.props
+    const productList = products.length > 0 ? products.map(t => (
       <div key={t.id}>
-        <p>{t.name} --- {t.price} --- <button onClick={()=>this.handleSub(t)}>-</button> {t.num} <button onClick={()=>this.handleAdd(t.id)}>+</button></p>
+        <p>{t.name} --- {t.price} --- <button onClick={()=>this.handleSub(t.id)}>-</button> {t.quntity} <button onClick={()=>this.handleAdd(t.id)}>+</button> --- total {t.quntity*t.price}</p>
       </div>
     )) : '请添加商品到购物车'
     return (
       <div>
         {productList}
         <hr/>
-        {cart.length > 0? <p>总价:{total}</p> : null}
+        {products.length > 0? <p>总价:{total}</p> : null}
       </div>
     )
   }
